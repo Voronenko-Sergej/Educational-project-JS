@@ -1,16 +1,12 @@
 'use strict';
-
-const calculator = require('./modules/calculator');
-
+import forms from './modules/forms';
+import modal from './modules/modal';
+import slaider from './modules/slaider';
+import tabs from './modules/tabs';
+import timer from './modules/timer';
+import carts from './modules/carts';
+import calculator from './modules/calculator.js';
 window.addEventListener('DOMContentLoaded', function () {
-    const forms = require('./modules/forms'),
-        modal = require('./modules/modal'),
-        slaider = require('./modules/slaider'),
-        tabs = require('./modules/tabs'),
-        timer = require('./modules/timer'),
-        carts = require('./modules/carts'),
-        calculator = require('./modules/calculator');
-
     carts();
     forms();
     modal();
