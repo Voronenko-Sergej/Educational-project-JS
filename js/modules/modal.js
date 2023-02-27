@@ -17,7 +17,6 @@ function modal() {
 
     const modalTrigger = document.querySelectorAll('[data-modal]'),
         modal = document.querySelector('.modal');
-
     modalTrigger.forEach(btn => {
         btn.addEventListener('click', openModal);
     });
@@ -50,6 +49,10 @@ function modal() {
     window.addEventListener('scroll', showModalByScroll);
 }
 
+<<<<<<< HEAD
 export default modal;
 export { openModal };
 export { closeModal };
+=======
+module.exports = modal;
+>>>>>>> parent of ae80aab (the type of export and import of modules has been changed)

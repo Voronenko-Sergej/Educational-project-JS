@@ -51,4 +51,4 @@ function slaider() {
         plusSlides(1);
     });
 }
-export default slaider;
+module.exports = slaider;
