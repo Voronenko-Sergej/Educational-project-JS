@@ -1,32 +1,21 @@
 'use strict';
-<<<<<<< HEAD
-import forms from './modules/forms.js';
-import modal from './modules/modal.js';
-import slaider from './modules/slaider.js';
-import tabs from './modules/tabs.js';
-import timer from './modules/timer.js';
-import carts from './modules/carts.js';
-import calculator from './modules/calculator.js';
-=======
+import forms from './modules/forms';
+import modal from './modules/modal';
+import slaider from './modules/slaider';
+import tabs from './modules/tabs';
+import timer from './modules/timer';
+import carts from './modules/carts';
+import calculator from './modules/calculator';
+import { openModal } from './modules/modal';
 
-const calculator = require('./modules/calculator');
-
->>>>>>> parent of ae80aab (the type of export and import of modules has been changed)
 window.addEventListener('DOMContentLoaded', function () {
-    const forms = require('./modules/forms'),
-        modal = require('./modules/modal'),
-        slaider = require('./modules/slaider'),
-        tabs = require('./modules/tabs'),
-        timer = require('./modules/timer'),
-        carts = require('./modules/carts'),
-        calculator = require('./modules/calculator');
-
+    const modalTimerId = setTimeout(() => openModal('.modal', modalTimerId), 5000);
     carts();
-    forms();
-    modal();
+    forms('form', modalTimerId);
+    modal('[data-modal]', '.modal', modalTimerId);
     slaider();
-    tabs();
-    timer();
+    tabs('.tabheader__item', '.tabcontent', '.tabheader__items');
+    timer('2023-03-01', '.timer');
     calculator();
 });
 

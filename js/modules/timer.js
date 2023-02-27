@@ -1,6 +1,6 @@
-function timer() {
+function timer(dedlainDate, timerSelector) {
     //Timer 
-    let dedlain = '2023-03-01';
+    let dedlain = dedlainDate;
 
     function getTimeRemelding(endtime) {
         let timeDifference = Date.parse(endtime) - Date.parse(Date());
@@ -62,6 +62,6 @@ function timer() {
         }
 
     }
-    setClock('.timer', dedlain);
+    setClock(timerSelector, dedlain);
 }
-module.exports = timer;
+export default timer;
