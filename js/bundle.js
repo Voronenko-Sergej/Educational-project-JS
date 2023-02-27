@@ -31,39 +31,44 @@ function calculator() {
             element.addEventListener('click', (e) => {
                 switch (element.id) {
                     case 'famen':
-                        sex = 447.6;
+                        localStorage.setItem('sex', 447.6);
+                        sex = localStorage.getItem('sex');
                         document.querySelector('#famen').classList.add('calculating__choose-item_active');
                         document.querySelector('#men').classList.remove('calculating__choose-item_active');
-                        console.log(element);
                         break;
                     case 'men':
-                        sex = 88.36;
+                        localStorage.setItem('sex', 88.36);
+                        sex = localStorage.getItem('sex');
                         document.querySelector('#men').classList.add('calculating__choose-item_active');
                         document.querySelector('#famen').classList.remove('calculating__choose-item_active');
                         break;
                     case 'low':
-                        active = 1.375;
+                        localStorage.setItem('active', 1.375);
+                        active = localStorage.getItem('active');
                         document.querySelector('#low').classList.add('calculating__choose-item_active');
                         document.querySelector('#small').classList.remove('calculating__choose-item_active');
                         document.querySelector('#medium').classList.remove('calculating__choose-item_active');
                         document.querySelector('#high').classList.remove('calculating__choose-item_active');
                         break;
                     case 'small':
-                        active = 1.2;
+                        localStorage.setItem('active', 1.2);
+                        active = localStorage.getItem('active');
                         document.querySelector('#small').classList.add('calculating__choose-item_active');
                         document.querySelector('#low').classList.remove('calculating__choose-item_active');
                         document.querySelector('#medium').classList.remove('calculating__choose-item_active');
                         document.querySelector('#high').classList.remove('calculating__choose-item_active');
                         break;
                     case 'medium':
-                        active = 1.55;
+                        localStorage.setItem('active', 1.55);
+                        active = localStorage.getItem('active');
                         document.querySelector('#medium').classList.add('calculating__choose-item_active');
                         document.querySelector('#low').classList.remove('calculating__choose-item_active');
                         document.querySelector('#small').classList.remove('calculating__choose-item_active');
                         document.querySelector('#high').classList.remove('calculating__choose-item_active');
                         break;
                     case 'high':
-                        active = 1.725;
+                        localStorage.setItem('active', 1.725);
+                        active = localStorage.getItem('active');
                         document.querySelector('#high').classList.add('calculating__choose-item_active');
                         document.querySelector('#low').classList.remove('calculating__choose-item_active');
                         document.querySelector('#small').classList.remove('calculating__choose-item_active');
@@ -77,12 +82,16 @@ function calculator() {
             element.addEventListener('input', (event) => {
                 if (Number(event.target.value)) {
                     if (event.target.id === 'height') {
-                        height = event.target.value;
+                        localStorage.setItem('height', event.target.value);
+                        height = localStorage.getItem('height');
+                        // height = event.target.value;
 
                     } else if (event.target.id === 'weight') {
-                        weight = event.target.value;
+                        localStorage.setItem('weight', event.target.value);
+                        weight = localStorage.getItem('weight');
                     } else {
-                        age = event.target.value;
+                        localStorage.setItem('age', event.target.value);
+                        age = localStorage.getItem('age');
                     }
                 } else {
                     event.target.value = '';
@@ -222,9 +231,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var _modal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modal */ "./js/modules/modal.js");
+
+
+
 function forms() {
     //forms
     const forms = document.querySelectorAll('form');
+
     const message = {
         loading: 'img/form/spinner.svg',
         success: 'Спасибо! Скоро мы с вами свяжемся',
@@ -287,7 +301,7 @@ function forms() {
         const prevModalDialog = document.querySelector('.modal__dialog');
 
         prevModalDialog.classList.add('hide');
-        openModal();
+        (0,_modal__WEBPACK_IMPORTED_MODULE_0__.openModal)();
 
         const thanksModal = document.createElement('div');
         thanksModal.classList.add('modal__dialog');
@@ -302,7 +316,7 @@ function forms() {
             thanksModal.remove();
             prevModalDialog.classList.add('show');
             prevModalDialog.classList.remove('hide');
-            closeModal();
+            (0,_modal__WEBPACK_IMPORTED_MODULE_0__.closeModal)();
         }, 4000);
     }
 }
@@ -318,8 +332,24 @@ function forms() {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */   "closeModal": () => (/* binding */ closeModal),
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
+/* harmony export */   "openModal": () => (/* binding */ openModal)
 /* harmony export */ });
+function closeModal() {
+    modals.classList.add('hide');
+    modals.classList.remove('show');
+    document.body.style.overflow = '';
+}
+function openModal() {
+    modals.classList.add('show');
+    modals.classList.remove('hide');
+    document.body.style.overflow = 'hidden';
+    const modalTimerId = setTimeout(openModal, 300000);
+    clearInterval(modalTimerId);
+}
+const modalTrigger = document.querySelectorAll('[data-modal]'),
+    modals = document.querySelector('.modal');
 function modal() {
     // Modal
 
@@ -330,18 +360,9 @@ function modal() {
         btn.addEventListener('click', openModal);
     });
 
-    function closeModal() {
-        modal.classList.add('hide');
-        modal.classList.remove('show');
-        document.body.style.overflow = '';
-    }
+    closeModal();
 
-    function openModal() {
-        modal.classList.add('show');
-        modal.classList.remove('hide');
-        document.body.style.overflow = 'hidden';
-        clearInterval(modalTimerId);
-    }
+    openModal();
 
     modal.addEventListener('click', (e) => {
         if (e.target === modal || e.target.getAttribute('data-close') == "") {
@@ -368,6 +389,8 @@ function modal() {
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (modal);
+
+
 
 /***/ }),
 
@@ -634,12 +657,12 @@ var __webpack_exports__ = {};
   !*** ./js/script.js ***!
   \**********************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _modules_forms__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/forms */ "./js/modules/forms.js");
-/* harmony import */ var _modules_modal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/modal */ "./js/modules/modal.js");
-/* harmony import */ var _modules_slaider__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/slaider */ "./js/modules/slaider.js");
-/* harmony import */ var _modules_tabs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/tabs */ "./js/modules/tabs.js");
-/* harmony import */ var _modules_timer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/timer */ "./js/modules/timer.js");
-/* harmony import */ var _modules_carts__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/carts */ "./js/modules/carts.js");
+/* harmony import */ var _modules_forms_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/forms.js */ "./js/modules/forms.js");
+/* harmony import */ var _modules_modal_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/modal.js */ "./js/modules/modal.js");
+/* harmony import */ var _modules_slaider_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/slaider.js */ "./js/modules/slaider.js");
+/* harmony import */ var _modules_tabs_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/tabs.js */ "./js/modules/tabs.js");
+/* harmony import */ var _modules_timer_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/timer.js */ "./js/modules/timer.js");
+/* harmony import */ var _modules_carts_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/carts.js */ "./js/modules/carts.js");
 /* harmony import */ var _modules_calculator_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/calculator.js */ "./js/modules/calculator.js");
 
 
@@ -650,12 +673,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 window.addEventListener('DOMContentLoaded', function () {
-    (0,_modules_carts__WEBPACK_IMPORTED_MODULE_5__["default"])();
-    (0,_modules_forms__WEBPACK_IMPORTED_MODULE_0__["default"])();
-    (0,_modules_modal__WEBPACK_IMPORTED_MODULE_1__["default"])();
-    (0,_modules_slaider__WEBPACK_IMPORTED_MODULE_2__["default"])();
-    (0,_modules_tabs__WEBPACK_IMPORTED_MODULE_3__["default"])();
-    (0,_modules_timer__WEBPACK_IMPORTED_MODULE_4__["default"])();
+    (0,_modules_carts_js__WEBPACK_IMPORTED_MODULE_5__["default"])();
+    (0,_modules_forms_js__WEBPACK_IMPORTED_MODULE_0__["default"])();
+    (0,_modules_modal_js__WEBPACK_IMPORTED_MODULE_1__["default"])();
+    (0,_modules_slaider_js__WEBPACK_IMPORTED_MODULE_2__["default"])();
+    (0,_modules_tabs_js__WEBPACK_IMPORTED_MODULE_3__["default"])();
+    (0,_modules_timer_js__WEBPACK_IMPORTED_MODULE_4__["default"])();
     (0,_modules_calculator_js__WEBPACK_IMPORTED_MODULE_6__["default"])();
 });
 

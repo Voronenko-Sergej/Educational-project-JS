@@ -1,6 +1,10 @@
+import { openModal } from "./modal";
+import { closeModal } from "./modal";
+
 function forms() {
     //forms
     const forms = document.querySelectorAll('form');
+
     const message = {
         loading: 'img/form/spinner.svg',
         success: 'Спасибо! Скоро мы с вами свяжемся',

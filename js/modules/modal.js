@@ -1,3 +1,17 @@
+function closeModal() {
+    modals.classList.add('hide');
+    modals.classList.remove('show');
+    document.body.style.overflow = '';
+}
+function openModal() {
+    modals.classList.add('show');
+    modals.classList.remove('hide');
+    document.body.style.overflow = 'hidden';
+    const modalTimerId = setTimeout(openModal, 300000);
+    clearInterval(modalTimerId);
+}
+const modalTrigger = document.querySelectorAll('[data-modal]'),
+    modals = document.querySelector('.modal');
 function modal() {
     // Modal
 
@@ -8,18 +22,9 @@ function modal() {
         btn.addEventListener('click', openModal);
     });
 
-    function closeModal() {
-        modal.classList.add('hide');
-        modal.classList.remove('show');
-        document.body.style.overflow = '';
-    }
+    closeModal();
 
-    function openModal() {
-        modal.classList.add('show');
-        modal.classList.remove('hide');
-        document.body.style.overflow = 'hidden';
-        clearInterval(modalTimerId);
-    }
+    openModal();
 
     modal.addEventListener('click', (e) => {
         if (e.target === modal || e.target.getAttribute('data-close') == "") {
@@ -46,3 +51,5 @@ function modal() {
 }
 
 export default modal;
+export { openModal };
+export { closeModal };
