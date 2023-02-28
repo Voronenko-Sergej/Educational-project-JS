@@ -12,11 +12,18 @@
   },
   "author": "",
   "license": "ISC",
+  "browserslist": [
+    "> 1%"
+  ],
   "bugs": {
     "url": "https://github.com/Voronenko-Sergej/training-project/issues"
   },
   "homepage": "https://github.com/Voronenko-Sergej/training-project#readme",
   "devDependencies": {
+    "@babel/cli": "^7.21.0",
+    "@babel/core": "^7.21.0",
+    "@babel/preset-env": "^7.20.2",
+    "core-js": "^3.29.0",
     "html-webpack-plugin": "^5.5.0",
     "json-server": "^0.17.1",
     "webpack": "^5.75.0",
@@ -26,5 +33,10 @@
   "webpack": {
     "build": "NODE_ENV='production' webpack",
     "start": "webpack-dev-server"
+  },
+  "dependencies": {
+    "@babel/polyfill": "^7.12.1",
+    "babel-loader": "^9.1.2",
+    "es6-promise-polyfill": "^1.2.0"
   }
 }
